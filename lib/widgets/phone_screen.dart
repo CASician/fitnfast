@@ -3,7 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class PhoneScreen extends StatelessWidget {
   final Widget child;
-  const PhoneScreen({required this.child});
+  const PhoneScreen({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

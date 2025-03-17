@@ -4,6 +4,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/cupertino.dart';
 
 class MyCarouselSlider extends StatelessWidget{
+  const MyCarouselSlider({super.key});
+
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
@@ -14,7 +16,7 @@ class MyCarouselSlider extends StatelessWidget{
         enlargeCenterPage: true,
       ),
       items: [
-        '../../assets/image2.png',
+        '../assets/image2.png',
         '../assets/image1.png',
         '../assets/image3.png'
       ].map((imagePath) {

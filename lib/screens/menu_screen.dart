@@ -1,6 +1,5 @@
 import 'package:fit_and_fast/screens/niente_cibo_screen.dart';
 import 'package:fit_and_fast/widgets/back_arrow_top_lx.dart';
-import 'package:fit_and_fast/widgets/background_decoration_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -9,6 +8,8 @@ import '../widgets/phone_screen.dart';
 import 'homepage_screen.dart';
 
 class MenuScreen extends StatelessWidget {
+  const MenuScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PhoneScreen(

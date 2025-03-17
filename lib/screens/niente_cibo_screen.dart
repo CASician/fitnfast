@@ -8,6 +8,8 @@ import 'menu_screen.dart';
 
 
 class NienteCiboScreen extends StatelessWidget {
+  const NienteCiboScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PhoneScreen(

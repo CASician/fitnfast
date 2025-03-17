@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class BackgroundDecoration extends StatelessWidget{
+  const BackgroundDecoration({super.key});
+
   @override
   Widget build(BuildContext context) {
 

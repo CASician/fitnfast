@@ -4,7 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class BackArrow extends StatelessWidget{
   final VoidCallback onPressed;
 
-  const BackArrow({Key? key, required this.onPressed}) : super(key: key);
+  const BackArrow({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

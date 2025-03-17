@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/background_decoration_container.dart';
-import '../widgets/cas_carousel_slider.dart';
+import '../widgets/carousel_slider.dart';
 import '../widgets/navbar.dart';
 import '../widgets/ordina_button.dart';
 import '../widgets/phone_screen.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return PhoneScreen(
