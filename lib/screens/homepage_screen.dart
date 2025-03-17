@@ -19,7 +19,8 @@ class HomePage extends StatelessWidget {
             Column(
               children: [
                 Spacer(),
-                MyCarouselSlider(), // Home page picture, TODO
+                // MyCarouselSlider(),
+                Image.asset('../assets/logo.png'),
                 SizedBox(height: 20),
                 Align(
                   alignment: Alignment.bottomCenter,

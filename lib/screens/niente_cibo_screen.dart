@@ -4,7 +4,7 @@ import 'package:fit_and_fast/widgets/ordina_button.dart';
 import 'package:flutter/material.dart';
 import 'package:fit_and_fast/widgets/phone_screen.dart';
 
-import 'menu_screen.dart';
+import 'menus/menu_screen.dart';
 
 
 class NienteCiboScreen extends StatelessWidget {

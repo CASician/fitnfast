@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import '../screens/menu_screen.dart';
+import '../screens/menus/menu_screen.dart';
 
 class Ordina_button extends StatelessWidget{
   const Ordina_button({super.key});
@@ -10,7 +10,7 @@ class Ordina_button extends StatelessWidget{
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(int.parse(dotenv.env['PRIMARY_COLOR'] ?? '0xFFFFA500')),
+        backgroundColor: Color(int.parse(dotenv.env['BUTTON_BACKGROUND'] ?? '0xFFFFA500')),
         shadowColor: Color(int.parse(dotenv.env['SHADOW_COLOR'] ?? '0xFFFFA500')),
         elevation: 10,
         shape: RoundedRectangleBorder(
