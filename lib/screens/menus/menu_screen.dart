@@ -76,16 +76,16 @@ class MenuScreen extends StatelessWidget {
 
     return PhoneScreen(
       child: Scaffold(
+        appBar: AppBar(
+          title: Image.asset('../../../assets/logo.png', height: 70),
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: null, // FIXME the back arrow sometimes appears, sometimes disappears. I don't know why.
+        ),
         backgroundColor: Colors.transparent,
         body: Stack(
           children: [
-            BackArrow(
-              onPressed:
-                  () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
-                  ),
-            ),
             Center(
               child: CarouselSlider.builder(
                 options: CarouselOptions(

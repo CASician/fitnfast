@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../screens/menus/menu_screen.dart';
+import '../screens/order_screens/1st_order_done_vs_prepare.dart';
 
 class Ordina_button extends StatelessWidget{
   const Ordina_button({super.key});
@@ -22,7 +23,7 @@ class Ordina_button extends StatelessWidget{
       ),
       onPressed: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => MenuScreen()),
+        MaterialPageRoute(builder: (context) => DoneVsPrepare()),
       ),
 
       child: Text(

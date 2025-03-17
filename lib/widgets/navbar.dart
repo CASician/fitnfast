@@ -5,6 +5,8 @@ import 'package:fit_and_fast/screens/menus/menu_screen.dart';
 import 'package:fit_and_fast/screens/deals_screen.dart';
 import 'package:fit_and_fast/screens/settings_screen.dart';
 
+import '../screens/order_screens/1st_order_done_vs_prepare.dart';
+
 class CustomNavbar extends StatelessWidget {
   final int currentIndex;
 
@@ -96,7 +98,7 @@ class CustomNavbar extends StatelessWidget {
                 // Apre la pagina del menu
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => MenuScreen()),
+                  MaterialPageRoute(builder: (context) => DoneVsPrepare()),
                 );
               },
               child: Container(
