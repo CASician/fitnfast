@@ -1,6 +1,8 @@
+import 'package:fit_and_fast/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import '../screens/deals_screen.dart';
 import '../screens/homepage_screen.dart';
 import '../screens/menus/menu_screen.dart';
 import '../screens/niente_cibo_screen.dart';
@@ -24,10 +26,10 @@ class CustomNavbar extends StatelessWidget {
         nextScreen = MenuScreen();
         break;
       case 2:
-        nextScreen = NienteCiboScreen();
+        nextScreen = DealsScreen();
         break;
       case 3:
-        nextScreen = NienteCiboScreen();
+        nextScreen = SettingsScreen();
         break;
       default:
         nextScreen = HomePage();
