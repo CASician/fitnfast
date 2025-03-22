@@ -11,11 +11,11 @@ class SettingsScreen extends StatelessWidget {
     return PhoneScreen(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Image.asset('../../../assets/logo.png', height: 70),
           centerTitle: true,
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: null, // FIXME the back arrow sometimes appears, sometimes disappears. I don't know why.
         ),
         backgroundColor: Colors.transparent,
         body: Stack(

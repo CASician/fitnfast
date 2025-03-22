@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import '../../widgets/back_arrow_top_lx.dart';
 import '../../widgets/navbar.dart';
-import '../homepage_screen.dart';
 
 class MenuItem {
   final String image;
@@ -50,6 +48,8 @@ List<MenuItem> generateDummyData() {
 }
 
 class MenuScreen extends StatelessWidget {
+  MenuScreen({super.key});
+
   final List<List<MenuItem>> menuSections = [
     generateDummyData(),
     generateDummyData(),
@@ -77,11 +77,11 @@ class MenuScreen extends StatelessWidget {
     return PhoneScreen(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Image.asset('../../../assets/logo.png', height: 70),
           centerTitle: true,
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: null, // FIXME the back arrow sometimes appears, sometimes disappears. I don't know why.
         ),
         backgroundColor: Colors.transparent,
         body: Stack(

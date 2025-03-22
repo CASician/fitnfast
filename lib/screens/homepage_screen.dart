@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/carousel_slider.dart';
 import '../widgets/navbar.dart';
 import '../widgets/ordina_button.dart';
 import '../widgets/phone_screen.dart';
