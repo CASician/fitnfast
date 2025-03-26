@@ -47,7 +47,7 @@ class CustomNavbar extends StatelessWidget {
     // Colori personalizzati dal dotenv
     Color backgroundColor = Color(int.parse(dotenv.env['BACKGROUND_COLOR'] ?? '0xFF4CAF50'));
     Color selectedColor = Color(int.parse(dotenv.env['SECONDARY_COLOR'] ?? '0xFFFFA500'));
-    Color unselectedColor = Colors.white;
+    Color unselectedColor = Colors.grey;
 
     return SizedBox(
       height: navBarHeight + plusButtonDiameter / 2 , // spazio per il plus che sporge
