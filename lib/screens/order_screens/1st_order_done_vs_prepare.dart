@@ -1,4 +1,5 @@
 import 'package:fit_and_fast/screens/homepage_screen.dart';
+import 'package:fit_and_fast/screens/order_screens/suggested.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -19,8 +20,13 @@ class DoneVsPrepare extends StatelessWidget {
       int.parse(dotenv.env['PRIMARY_COLOR'] ?? '0xFFFFFFFF'),
     );
     Color textColor = Color(
-      int.parse(dotenv.env['TEXT_COLOR'] ?? '0xFFFFFFFF'),
+      int.parse(dotenv.env['WHITE'] ?? '0xFFFFFFFF'),
     );
+
+    // Dimensioni personalizzabili dei blocchi
+    double blockWidth = MediaQuery.of(context).size.width * 0.8;
+    double createBlockHeight = MediaQuery.of(context).size.height * 0.35;
+    double suggestBlockHeight = MediaQuery.of(context).size.height * 0.2;
 
     return PhoneScreen(
       child: Scaffold(
@@ -39,93 +45,84 @@ class DoneVsPrepare extends StatelessWidget {
           ),
         ),
         backgroundColor: Colors.transparent,
-        body: Stack(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Primo box
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        // Naviga alla prima pagina
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => EmptyPage(), // Placeholder
-                          ),
-                        );
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.all(8.0),
-                        padding: const EdgeInsets.only(top: 60.0, bottom: 60.0),
-                        decoration: BoxDecoration(
-                          color: boxBackgroundColor,
-                          border: Border.all(color: boxBorderColor, width: 2),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            // Se vuoi usare un'immagine, decommenta la riga sottostante
-                            // Image.asset('assets/images/your_image.png', width: 40),
-                            Icon(
-                              Icons.rice_bowl_rounded,
-                              size: 40,
-                              color: textColor,
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              'Suggeriti',
-                              style: TextStyle(fontSize: 18, color: textColor),
-                            ),
-                          ],
-                        ),
+            // Blocco "Crea"
+            GestureDetector(
+              onTap: () {
+                // Naviga alla prima pagina
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EmptyPage()),
+                );
+              },
+              child: Container(
+                width: blockWidth,
+                height: createBlockHeight,
+                margin: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  color: boxBackgroundColor,
+                  border: Border.all(color: boxBorderColor, width: 2),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.lightbulb_outline_rounded,
+                      size: 60,
+                      color: textColor,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Crea',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: textColor,
                       ),
                     ),
-                  ),
-                  // Secondo box
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        // Naviga alla seconda pagina
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => EmptyPage(), // Placeholder
-                          ),
-                        );
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.all(8.0),
-                        padding: const EdgeInsets.only(top: 60.0, bottom: 60.0),
-                        decoration: BoxDecoration(
-                          color: boxBackgroundColor,
-                          border: Border.all(color: boxBorderColor, width: 2),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            // Se vuoi usare un'immagine, decommenta la riga sottostante
-                            // Image.asset('assets/images/your_image.png', width: 40),
-                            Icon(
-                              Icons.lightbulb_outline_rounded,
-                              size: 40,
-                              color: textColor,
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              'Crea',
-                              style: TextStyle(fontSize: 18, color: textColor),
-                            ),
-                          ],
-                        ),
+                  ],
+                ),
+              ),
+            ),
+            // Blocco "Suggeriti"
+            GestureDetector(
+              onTap: () {
+                // Naviga alla seconda pagina
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Suggested()),
+                );
+              },
+              child: Container(
+                width: blockWidth,
+                height: suggestBlockHeight,
+                margin: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  color: boxBackgroundColor,
+                  border: Border.all(color: boxBorderColor, width: 2),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.rice_bowl_rounded,
+                      size: 40,
+                      color: textColor,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Suggeriti',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: textColor,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

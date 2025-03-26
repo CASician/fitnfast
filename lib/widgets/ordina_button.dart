@@ -10,12 +10,12 @@ class Ordina_button extends StatelessWidget{
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(int.parse(dotenv.env['BUTTON_BACKGROUND'] ?? '0xFFFFA500')),
+        backgroundColor: Color(int.parse(dotenv.env['BACKGROUND_COLOR'] ?? '0xFFFFA500')),
         shadowColor: Color(int.parse(dotenv.env['SHADOW_COLOR'] ?? '0xFFFFA500')),
         elevation: 10,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
-          side: BorderSide(color: Color(int.parse(dotenv.env['BORDER_COLOR'] ?? '0xFF888888')), width: 4),
+          side: BorderSide(color: Color(int.parse(dotenv.env['PRIMARY_COLOR'] ?? '0xFF888888')), width: 3),
         ),
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
         minimumSize: Size(350, 100),

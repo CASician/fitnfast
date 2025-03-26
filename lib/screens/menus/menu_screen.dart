@@ -1,9 +1,9 @@
-import 'package:fit_and_fast/widgets/phone_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../../widgets/navbar.dart';
+import '../../widgets/phone_screen.dart';
+import '../MyEmptyPage.dart';
 
 class MenuItem {
   final String image;
@@ -20,8 +20,58 @@ class MenuItem {
 List<MenuItem> generateDummyData() {
   return [
     MenuItem(
+      image: '../../assets/image3.png',
+      description: 'Pasta Carbonara',
+      values: [42, 42, 42],
+    ),
+    MenuItem(
+      image: '../../assets/image2.png',
+      description: 'Cheese Burger',
+      values: [42, 42, 42],
+    ),
+    MenuItem(
       image: '../../assets/image1.png',
       description: 'Pizza Margherita',
+      values: [42, 42, 42],
+    ),
+    MenuItem(
+      image: '../../assets/image2.png',
+      description: 'Sushi Roll',
+      values: [42, 42, 42],
+    ),
+    MenuItem(
+      image: '../../assets/image1.png',
+      description: 'Caesar Salad',
+      values: [42, 42, 42],
+    ),
+  ];
+}
+
+List<MenuItem> generateAlternateDummyData() {
+  return [
+    MenuItem(
+      image: '../../assets/image2.png',
+      description: 'Cheese Burger',
+      values: [42, 42, 42],
+    ),
+    MenuItem(
+      image: '../../assets/image3.png',
+      description: 'Pasta Carbonara',
+      values: [42, 42, 42],
+    ),
+    MenuItem(
+      image: '../../assets/image1.png',
+      description: 'Pizza Margherita',
+      values: [42, 42, 42],
+    ),
+    MenuItem(
+      image: '../../assets/image1.png',
+      description: 'Caesar Salad',
+      values: [42, 42, 42],
+    ),
+    MenuItem(
+      image: '../../assets/image2.png',
+      description: 'Sushi Roll',
       values: [42, 42, 42],
     ),
     MenuItem(
@@ -36,43 +86,47 @@ List<MenuItem> generateDummyData() {
     ),
     MenuItem(
       image: '../../assets/image1.png',
-      description: 'Caesar Salad',
-      values: [42, 42, 42],
-    ),
-    MenuItem(
-      image: '../../assets/image2.png',
-      description: 'Sushi Roll',
+      description: 'Pizza Margherita',
       values: [42, 42, 42],
     ),
   ];
 }
 
-class MenuScreen extends StatelessWidget {
-  MenuScreen({super.key});
+class MenuScreen extends StatefulWidget {
+  @override
+  _MenuScreenState createState() => _MenuScreenState();
+}
 
+class _MenuScreenState extends State<MenuScreen> {
   final List<List<MenuItem>> menuSections = [
     generateDummyData(),
+    generateAlternateDummyData(),
     generateDummyData(),
-    generateDummyData(),
-    generateDummyData(),
+    generateAlternateDummyData(),
     generateDummyData(),
   ];
 
+  final List<String> names = [
+    'Carboidrati',
+    'Proteine',
+    'Grassi',
+    'Dolci',
+    'Bevande',
+  ];
+
+  int selectedCategoryIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor = Color(
-      int.parse(dotenv.env['CAROUSEL_BACKGROUND'] ?? '0xFF388E3C'),
+    Color primaryColor = Color(
+      int.parse(dotenv.env['PRIMARY_COLOR'] ?? '0xFF388E3C'),
     );
     Color textColor = Color(
-      int.parse(dotenv.env['CAROUSEL_TEXT'] ?? '0xFFFFFFFF'),
+      int.parse(dotenv.env['TEXT_COLOR'] ?? '0xFFFFFFFF'),
     );
-    final List<String> names = [
-      'Carboidrati',
-      'Proteine',
-      'Grassi',
-      'Dolci',
-      'Bevande',
-    ];
+    Color backgroundColor = Color(
+      int.parse(dotenv.env['BACKGROUND_COLOR'] ?? '0xFFFFFFFF'),
+    );
 
     return PhoneScreen(
       child: Scaffold(
@@ -84,57 +138,94 @@ class MenuScreen extends StatelessWidget {
           elevation: 0,
         ),
         backgroundColor: Colors.transparent,
-        body: Stack(
+        body: Column(
           children: [
-            Center(
-              child: CarouselSlider.builder(
-                options: CarouselOptions(
-                  height: 550,
-                  enlargeCenterPage: false,
-                  viewportFraction: 0.85,
-                  enableInfiniteScroll: false,
-                ),
-                itemCount: menuSections.length,
-                itemBuilder: (context, index, realIndex) {
-                  return Card(
-                    margin: EdgeInsets.all(10),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(names.length, (index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 3.0,
+                      vertical: 10,
                     ),
-                    color: backgroundColor,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            names[index],
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: textColor,
-                            ),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: selectedCategoryIndex == index
+                            ? primaryColor
+                            : backgroundColor,
+                        foregroundColor: textColor,
+                        padding: EdgeInsets.symmetric(
+                          vertical: 8.0,
+                          horizontal: 12.0,
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          selectedCategoryIndex = index;
+                        });
+                      },
+                      child: Text(names[index]),
+                    ),
+                  );
+                }),
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: menuSections[selectedCategoryIndex].length,
+                itemBuilder: (context, itemIndex) {
+                  final item = menuSections[selectedCategoryIndex][itemIndex];
+                  return MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => EmptyPage()),
+                        );
+                      },
+                      child: Card(
+                        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(color: primaryColor, width: 2),
+                        ),
+                        color: backgroundColor,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 12),
+                          child: Row(
+                            children: [
+                              SizedBox(width: 40),
+                              Image.asset(
+                                item.image,
+                                width: 70,
+                              ),
+                              SizedBox(width: 40),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      item.description,
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold,
+                                        color: textColor,
+                                      ),
+                                    ),
+                                    Text(
+                                      '${item.values[0]} - ${item.values[1]} - ${item.values[2]}',
+                                      style: TextStyle(color: textColor),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: menuSections[index].length,
-                            itemBuilder: (context, itemIndex) {
-                              final item = menuSections[index][itemIndex];
-                              return ListTile(
-                                leading: Image.asset(item.image, width: 40),
-                                title: Text(
-                                  item.description,
-                                  style: TextStyle(color: textColor),
-                                ),
-                                trailing: Text(
-                                  '${item.values[0]} - ${item.values[1]} - ${item.values[2]}',
-                                  style: TextStyle(color: textColor),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   );
                 },
